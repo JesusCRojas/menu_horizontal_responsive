@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+header {
+    /*Para que tenga el 100% de su contenedor, en este caso, el body.*/
+    width: 100%;
+    background: #4E94AB;
+ 
+}
+
+/*Tenemos un label que activará y desactivará el checkbox, por eso debemos esconder este checkbox cuya 
+  clase es ckMenu, ya que está demás, pues el checkbox solo nos servirá para ACTIVAR o DESACTIVAR cosas
+  mediante el cliqueo al label Menú.*/
+#ckMenu {
+
+    /*cada elemento en HTML se puede circunscribir a un rectángulo, referido 
+      generalmente como box o caja. El comportamiento de esta caja se puede 
+      controlar a través de la propiedad display que le dice al navegador como 
+      debe representarla: en línea (valor inline), como un bloque (valor block), 
+      etc. El valor display: none le dice al navegador que no lo represente; el 
+      resultado es que el elemento queda escondido y el espacio que debería ocupar 
+      colapsado.*/
+    /*Con esto desaparecemos el elememento de la maquetación.*/
+    display: none;
+}
+
+/*Label "Menú" que se verá en pantallas más pequeñas.*/
+header label {
+    /*Por ahora lo escondemos porque en pantallas grandes no es necesario que se vea.*/
+    display: none;
+
+    width: 40px;
+    height: 15px;
+
+    padding: 10px; 
+  
+
+    border-right: 1px solid white;
+    border-bottom: 1px solid white;
+}
+
+header label:hover {
+    /*Para que el puntero cambie a manito.*/
+    cursor: pointer;
+
+    /*Color oscuro*/
+    background: rgba(0,0,0,0.3);
+}
+
+.menu ul {
+
+    margin: 0;
+    padding: 0;
+
+    /*Quitamos los puntos.*/
+    list-style: none;
+
+    /*Con esto las cajas serán flexibles y por defecto, todas se posicionarán en 
+      una fila, pero si lo deseamos, nosotros podemos cambiarlo y aplicarle otras 
+      cosas usando flex.*/
+    display: flex;
+    /*Aquí está la línea con la cual las podemos posiconar de forma vertical.*/
+    /*flex-direction: column;*/
+}
+
+.menu li:hover {
+
+    /*Color oscuro*/
+    background: rgba(0,0,0,0.3);
+}
+
+.menu li a {
+
+    display: block;
+    padding: 15px 20px;
+    color: white;
+
+    /*Quitamos los subrayados.*/
+    text-decoration: none;
+}
+
+@media (max-width: 768px){
+
+    /*Label "Menú" que se verá en pantallas más pequeñas.*/
+    header label {
+        /*Está escondido, pero ahora lo vamos a hacer visible.*/
+        /*display: none;*/
+        display: block;
+ 
+ 
+    }
+
+    .menu {
+
+        /*DUDA. Solo sé que al poner esto, la altura del header se achica y no se ve grande 
+          después de haber puesto a las cajas flexibles en columna.*/
+        position: absolute;
+
+        background: #4E94AB;
+        width: 70%;
+
+        /*Para que esté al otro lado de la pantalla y no se pueda visualizar, pues 
+          solo se visualizará después de darle click en el texto Menú que activa y 
+          desactiva un checkbox.*/
+        margin-left: -70%;
+
+        /*Proporcionan una forma de animar los cambios de las propiedades CSS, en lugar de que 
+          los cambios surtan efecto de manera instantánea.*/
+        /*Esto hace que el menú aparezca en 0.5 segundos.*/
+        transition: all 0.5s;
+    }
+
+    /*Posicionando de forma vertical los enlaces de la lista.*/
+    .menu ul {
+
+        flex-direction: column;
+    }
+
+    .menu li {
+
+        border-top: 1px solid white;
+    }
+
+    /*Para activar o desactivar el checkbox.*/
+    /*Le buscará a la clase menu para cambiarle estilos.*/
+    #ckMenu:checked ~ .menu {
+
+        /*Le ponemos este marging porque está con un margin-left de -70%.*/
+        margin: 0;
+    }
+
+}
